@@ -21,7 +21,9 @@ void traverse();
 Node::Node(int data, bool leaf){
 
 }
-void insertNotFull(int data);
+void insertNotFull(int data){
+  
+}
 
 void Node::traverse(){
 
