@@ -9,10 +9,11 @@ private:
 public:
 
     BTree():
-    BTree(int t);
-    void insert;
-    void search;
     ~BTree();
+    BTree(int t);
+    void insert(int data);
+    void search(int data);
+
 
 friend class Node;
 };
@@ -27,8 +28,8 @@ private:
 public:
 
     Node();
-    Node(bool leaf)
-    void traverse;
-    void splitChild;
+    Node(bool leaf);
+    void traverse();
+    void splitChild();
 
 };
