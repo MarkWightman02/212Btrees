@@ -1,6 +1,39 @@
 #include <iostream>
 #include <vector>
 
+class Node{
+
+private:
+    //Current # of keys in node
+    int current;
+    //True if node is a leaf
+    bool leaf;
+    //Vector of keys in the node
+    std::vector<int> keys;
+    //Vector of the node's children
+    std::vector<Node*> children;
+    //max degree of node
+    unsigned int degree;
+
+
+public:
+    //Constructor
+    Node(int data, bool leaf);
+    //Insert when not full
+    void insertNotFull(int data);
+    //Traverse tree with this node as root
+    void traverse();
+    //When the child is full, this function will split it, index is the index of the child array
+    void splitChild(int index, Node *child);
+    //Find a key in a tree with this node as root
+    Node* search(int data);
+
+    //Make BTree a friend
+    friend class BTree;
+
+};
+
+
 class BTree{
 
 //Private class members of the tree include
@@ -20,38 +53,5 @@ public:
     //Traverse the tree
     void traverse();
 
-
-};
-
-
-class Node{
-
-private:
-    //Current # of keys in node
-    int current;
-    //True if node is a leaf
-    bool leaf;
-    //Vector of keys in the node
-    std::vector<int> keys;
-    //Vector of the node's children
-    std::vector<*Node> children;
-    //max degree of node
-    unsigned int degree;
-
-
-public:
-    //Constructor
-    Node(int data, bool leaf);
-    //Insert when not full
-    void insertNotFull(int data);
-    //Traverse tree with this node as root
-    void traverse();
-    //When the child is full, this function will split it, index is the index of the child array
-    void splitChild(int index, Node *child);
-    //Find a key in a tree with this node as root
-    Node* search(int data);
-
-    //Make BTree a friend
-    friend class BTree;
 
 };

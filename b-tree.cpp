@@ -12,6 +12,7 @@ void BTree::insert(int data){
 
 Node* BTree::search(int data){
 
+
 }
 
 void traverse();
