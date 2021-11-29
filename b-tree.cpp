@@ -16,7 +16,9 @@ Node* BTree::search(int data){
 
 }
 
-void traverse();
+void traverse(){
+  
+}
 
 //Node Class
 Node::Node(int data, bool leaf){
