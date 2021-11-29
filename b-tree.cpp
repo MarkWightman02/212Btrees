@@ -1,35 +1,35 @@
 #include "b-tree.h"
 
 //Tree Class
-BTree::BTree(){
+BTree::BTree(int degree){
 
 }
 
-BTree::~BTree();
-
-BTree::BTree(int t){
-
-}
 
 void BTree::insert(int data){
 
 }
 
-void BTree::search(int data){
+Node* BTree::search(int data){
 
 }
+
+void traverse();
 
 //Node Class
-Node::Node(){
+Node::Node(int data, bool leaf){
 
 }
-Node::Node(bool leaf){
+void insertNotFull(int data);
 
-}
 void Node::traverse(){
 
 }
 
-void Node::splitChild(){
+void splitChild(int index, Node *child){
+
+}
+
+Node* search(int data);
 
 }
