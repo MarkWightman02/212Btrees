@@ -13,7 +13,7 @@ private:
     //Vector of the node's children
     std::vector<Node*> children;
     //max degree of node
-    unsigned int degree;
+    int degree;
 
 
 public:
