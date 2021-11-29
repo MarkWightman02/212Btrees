@@ -2,7 +2,8 @@
 
 //Tree Class
 BTree::BTree(int degree){
-
+  this->root = NULL;
+  this->degree = degree;
 }
 
 
@@ -22,7 +23,7 @@ Node::Node(int data, bool leaf){
 
 }
 void insertNotFull(int data){
-  
+
 }
 
 void Node::traverse(){
@@ -33,6 +34,6 @@ void splitChild(int index, Node *child){
 
 }
 
-Node* search(int data);
+Node* search(int data){
 
 }

@@ -40,7 +40,7 @@ class BTree{
 //a pointer to the root node and the # of keys in a node
 private:
     Node *root;
-    unsigned int degree;
+    int degree;
 
 public:
 
