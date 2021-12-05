@@ -9,12 +9,12 @@ BTree::BTree(int degree){
 
 void BTree::insert(int data){
   if (this->root == NULL){
-    this->root = new Node(degree, true);
+    this->root = new Node(this->degree, true);
     this->root->keys[0] = data;
     this->root->current = 1;
   }else{
     if (this->root->current == 2*degree-1){
-      Node *tmp = new Node(degree, false);
+      Node *tmp = new Node(this->degree, false);
 
       tmp->children[0] = this->root;
 
@@ -25,12 +25,12 @@ void BTree::insert(int data){
         zeroOrNot = 1;
       }
 
-      tmp->children[zeroOrNOt]->insertNonFull(data);
+      tmp->children[zeroOrNot]->insertNonFull(data);
 
       this->root = tmp;
     }
     else{
-      this->root->insertNonFull(data);
+      this->root->insertNotFull(data);
     }
   }
 }
