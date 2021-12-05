@@ -25,7 +25,7 @@ void BTree::insert(int data){
         zeroOrNot = 1;
       }
 
-      tmp->children[zeroOrNot]->insertNonFull(data);
+      tmp->children[zeroOrNot]->insertNotFull(data);
 
       this->root = tmp;
     }
