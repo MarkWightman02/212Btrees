@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
 class Node{
 
@@ -9,7 +10,7 @@ private:
     //True if node is a leaf
     bool leaf;
     //Vector of keys in the node
-    std::vector<int> keys;
+    std::vector<std::pair<std::string,int>> keys;
     //Vector of the node's children
     std::vector<Node*> children;
     //max degree of node
