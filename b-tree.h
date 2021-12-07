@@ -1,6 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "b-tree.h"
+#include "writeFile.h"
+#include "readFile.h"
 
 class Node{
 
