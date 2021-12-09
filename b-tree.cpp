@@ -18,8 +18,6 @@ void BTree::insert(int data, std::string word){
     //Make a new node and make it the root
     this->root = new Node(this->degree, true);
     //Give the new root a key of the data we are inserting
-    std::pair <int,std::string> junk (-1, "test");
-    this->root->keys.push_back(junk);
     this->root->keys[0] = dataToInsert;
     //Change the roots current keys to 1
     this->root->current = 1;
@@ -70,11 +68,58 @@ Node* BTree::search(int data){
 }
 
 //Node Class
-Node::Node(int data, bool leaf){
+Node::Node(int degree, bool leaf){
+
+  //Setters
+  this->degree = degree;
+  this->leaf = leaf;
+
+  //Give the array space for the degree
+  this->keys = new std::pair<int,std::string>[2*degree-1];
+  //Give the children array enough space
+  this->children = new Node *[2*(this->degree)];
+
+  //Default 0 keys;
+  this->current = 0;
+
 
 }
-void insertNotFull(int data){
+void Node::insertNotFull(int data){
 
+  //Make an iterator, start it at the last element in the current node's keys
+  int i = this->current-1;
+
+  //Check if leaf
+  if (this->leaf == true){
+
+    //Move keys over to insert new key
+    while (i >= 0 && this->keys[i].first > data){
+      this->keys[i+1] = keys[i];
+      i--;
+    }
+
+    //Add the new key
+    this->keys[i+1].first = data;
+    this->current = this->current+1;
+  }else{
+    //Decrement i until the child is found
+    while(i>=0 && this->keys[i].first > data){
+      i--;
+    }
+
+    //Find if found child is full
+    if(this->children[i+1]->current = 2*(this->degree)-1){
+      //If so, split it
+      this->splitChild(i+1, this->children[i+1]);
+
+      //Then, rotate
+      if(this->keys[i+1].first < data){
+        i++;
+      }
+    }
+      //finish by recursively calling again
+    this->children[i+1]->insertNotFull(data);
+  }
 }
 
 void Node::traverse() {
@@ -94,7 +139,44 @@ void Node::traverse() {
     }
 }
 
-void splitChild(int index, Node *child){
+void Node::splitChild(int index, Node *child){
+  //New node will store keys = to degree -1
+
+  Node *tmp = new Node(child->degree, child->leaf);
+  tmp->current = this->degree-1;
+
+  //Copy over the last keys from the child to the new node
+  for(int i = 0; i < this->degree-1; i++){
+    tmp->keys[i] = child->keys[i + this->degree];
+  }
+
+  //Copy over last children from child to new node
+  if(!child->leaf){
+    for(int i = 0; i < this->degree; i++){
+      tmp->children[i] = child->children[i+this->degree];
+    }
+  }
+
+  //-1 from keys in child
+  child->current= this->degree-1;
+
+  //Allocate space for new child
+  for (int i = this->current; i>= i+1; i--){
+    this->children[i+1] = this->children[i];
+  }
+
+  //Set child to new node
+  this->children[index+1] = tmp;
+
+  //Find new node, move values
+  for (int i = this->current; i >= index; i--){
+    this->keys[i+1] = this->keys[i];
+  }
+
+  //Copy key to new node
+  this->keys[index] = tmp->keys[this->degree-1];
+  //+1 to current keys
+  this->current++;
 
 }
 
@@ -106,18 +188,18 @@ Node *Node::search(int data){
 
     while ((i < this->current) && (data > this->keys[i].first)){
         i++;
-
-
-        // If the current key = input,we found the node, return it, base case
-        if (this->keys[i].first == data) {
-            return this;
-        }
-        // if this is a leaf node and the key is not here
-        if (leaf == true) {
-            return NULL;
-        }
-
-        // recursive call using children of i as the data parameter
-        return children[i]->search(data);
     }
+
+
+    // If the current key = input,we found the node, return it, base case
+    if (this->keys[i].first == data) {
+        return this;
+    }
+    // if this is a leaf node and the key is not here
+    if (leaf == true) {
+        return NULL;
+    }
+
+    // recursive call using children of i as the data parameter
+    return children[i]->search(data);
 }

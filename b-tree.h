@@ -11,16 +11,16 @@ private:
     //True if node is a leaf
     bool leaf;
     //Vector of keys in the node
-    std::vector<std::pair<int,std::string>> keys;
-    //Vector of the node's children
-    std::vector<Node*> children;
+    std::pair<int,std::string> *keys;
+    //array of pointers of the node's children
+    Node **children;
     //max degree of node
     int degree;
 
 
 public:
     //Constructor
-    Node(int data, bool leaf);
+    Node(int degree, bool leaf);
     //Insert when not full
     void insertNotFull(int data);
     //Traverse tree with this node as root
