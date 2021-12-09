@@ -1,9 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "b-tree.h"
-#include "writeFile.h"
-#include "readFile.h"
+
 
 class Node{
 
@@ -13,7 +11,7 @@ private:
     //True if node is a leaf
     bool leaf;
     //Vector of keys in the node
-    std::vector<std::pair<std::string,int>> keys;
+    std::vector<std::pair<int,std::string>> keys;
     //Vector of the node's children
     std::vector<Node*> children;
     //max degree of node
@@ -51,7 +49,7 @@ public:
     //Create an empty B Tree
     BTree(int degree);
     //Insert data into the Tree
-    void insert(int data);
+    void insert(int data, std::string);
     //Search for a key within the tree and return the node it's at
     Node* search(int data);
     //Traverse the tree
