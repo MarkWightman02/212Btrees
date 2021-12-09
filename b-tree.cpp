@@ -67,6 +67,12 @@ Node* BTree::search(int data){
 
 }
 
+void BTree::traverse(){
+  if(this->root != NULL){
+    this->root->traverse();    
+  }
+}
+
 //Node Class
 Node::Node(int degree, bool leaf){
 
