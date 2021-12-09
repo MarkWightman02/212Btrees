@@ -61,7 +61,11 @@ void BTree::insert(int data, std::string word){
 }
 
 Node* BTree::search(int data){
-
+  if (this->root == NULL){
+    return NULL;
+  }else{
+    return this->root->search(data);
+  }
 
 }
 
